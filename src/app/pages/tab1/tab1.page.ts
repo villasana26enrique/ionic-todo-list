@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WishesService } from '../../services/wishes.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  public wishesService: any;
+  constructor(_wishesService: WishesService) {
+    this.wishesService = _wishesService;
+  }
 
 }
