@@ -8,7 +8,7 @@ export class List {
     finished: boolean;
     items: ListItem[];
 
-    constructor (title: string, ) {
+    constructor ( title: string ) {
         this.id = new Date().getTime();
         this.title = title;
         this.createdAt = new Date();
