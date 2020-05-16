@@ -7,12 +7,25 @@ import { List } from '../models/list.model';
 export class WishesService {
 
   lists: List[] = [];
-  
+
   constructor() {
     console.log('Servicio Inicializado');
-    const LISTA_UNO = new List('Guitarras Favoritas');
-    const LISTA_DOS = new List('Canciones de Metallica Favoritas');
+    this.loadStorage();
+  }
 
-    this.lists.push(LISTA_UNO, LISTA_DOS);
+  createList( title: string ) {
+    const newList = new List( title );
+    this.lists.push(newList);
+    this.saveStorage();
+  }
+
+  saveStorage() {
+    localStorage.setItem('data', JSON.stringify(this.lists));
+  }
+
+  loadStorage() {
+    if ( localStorage.getItem('data') ) {
+      this.lists = JSON.parse(localStorage.getItem('data'));
+    }
   }
 }
