@@ -1,10 +1,10 @@
 
 export class ListItem {
     desc: string;
-    completado: boolean;
-    constructor (desc: string, completado = false) {
+    finished: boolean;
+    constructor (desc: string, finished = false) {
         this.desc = desc;
-        this.completado = completado;
+        this.finished = finished;
     }
 
 }

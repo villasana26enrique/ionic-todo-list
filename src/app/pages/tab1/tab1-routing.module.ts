@@ -8,7 +8,7 @@ const routes: Routes = [
     component: Tab1Page,
   },
   {
-    path: 'add',
+    path: 'add/:listaId',
     loadChildren: () => import('../add-list/add-list.module').then( m => m.AddListPageModule)
   }
 ];
