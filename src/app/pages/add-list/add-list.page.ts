@@ -33,4 +33,21 @@ export class AddListPage {
     }
   }
 
+  changeCheck(item: ListItem) {
+    /* Este codigo se hace para saber cuantos elementos de la lista estan
+    pendiente*/
+    const pendingTask = this.list.items
+                        .filter(itemData => !itemData.finished )
+                        .length;
+    if( pendingTask === 0 ) {
+      this.list.finishedAt = new Date();
+      this.list.finished = true;
+    } else {
+      this.list.finishedAt = null;
+      this.list.finished = false;
+    }
+
+    this.wishesService.saveStorage();
+  }
+
 }
