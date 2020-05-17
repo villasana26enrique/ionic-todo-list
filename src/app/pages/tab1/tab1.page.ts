@@ -23,7 +23,7 @@ export class Tab1Page {
     this.router = _router;
   }
 
-  async agregarLista() {
+  async addList() {
     const alert = await this.alertCntlr.create({
       header: 'Nueva Lista',
       inputs: [{
@@ -54,5 +54,11 @@ export class Tab1Page {
     });
 
     alert.present();
+  }
+
+  watchList( id: string ) {
+    /* Ambas funcionan */
+    // this.router.navigate( [ '/tabs/tab1/add', id ] );
+    this.router.navigateByUrl(`/tabs/tab1/add/${ id }`);
   }
 }
