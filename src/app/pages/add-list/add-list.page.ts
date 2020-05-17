@@ -33,7 +33,7 @@ export class AddListPage {
     }
   }
 
-  changeCheck(item: ListItem) {
+  changeCheck(item: ListItem): void {
     /* Este codigo se hace para saber cuantos elementos de la lista estan
     pendiente*/
     const pendingTask = this.list.items
@@ -47,6 +47,11 @@ export class AddListPage {
       this.list.finished = false;
     }
 
+    this.wishesService.saveStorage();
+  }
+
+  deleteItem( index: number ) {
+    this.list.items.splice( index, 1 );
     this.wishesService.saveStorage();
   }
 
