@@ -27,7 +27,6 @@ export class AddListPage {
     } else {
       const newItem = new ListItem( this.itemName );
       this.list.items.push( newItem );
-      console.log(newItem);
       this.itemName = '';
       this.wishesService.saveStorage();
     }
