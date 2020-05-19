@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { WishesService } from '../../services/wishes.service';
 import { AlertController } from '@ionic/angular';
-import { ListItem } from '../../models/item-list.model';
 
 @Component({
   selector: 'app-tab1',

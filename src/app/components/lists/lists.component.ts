@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { WishesService } from '../../services/wishes.service';
 import { List } from '../../models/list.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-lists',
@@ -12,15 +13,16 @@ export class ListsComponent {
 
   @Input() finished = true;
 
-  public lists: List;
   private router: any;
-  private wishesService: any;
+  public wishesService: any;
+  private alertController: any;
 
   constructor(_router: Router,
-              _wishesServices: WishesService) {
-    this.router = _router;
-    this.wishesService = _wishesServices;
-    this.lists = this.wishesService.lists;
+              _wishesServices: WishesService,
+              _alertController: AlertController) {
+    this.router          = _router;
+    this.wishesService   = _wishesServices;
+    this.alertController = _alertController;
   }
 
   watchList( id: string ) {
@@ -31,6 +33,21 @@ export class ListsComponent {
     } else {
       this.router.navigateByUrl(`/tabs/tab1/add/${ id }`);
     }
+  }
+
+  deleteList(list: List) {
+    this.wishesService.deleteList( list );
+    this.showMessage();
+  }
+
+  async showMessage() {
+      const alert = await this.alertController.create({
+      header: 'Importante',
+      message: 'La Lista ha sido eliminada con exito',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
