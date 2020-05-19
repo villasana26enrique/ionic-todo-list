@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { WishesService } from '../../services/wishes.service';
-import { List } from '../../models/list.model';
 import { AlertController } from '@ionic/angular';
+import { ListItem } from '../../models/item-list.model';
 
 @Component({
   selector: 'app-tab1',
@@ -11,16 +11,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  public lists: List[];
-  private router: any;
+  private alertCntlr: any;
 
-  public wishesService: any;
-  constructor(_wishesService: WishesService,
-              _router: Router,
-              public alertCntlr: AlertController) {
-    this.wishesService = _wishesService;
-    this.lists = this.wishesService.lists;
-    this.router = _router;
+  constructor(private wishesService: WishesService,
+              private router: Router,
+              _alertCntlr: AlertController) {
+    this.alertCntlr = _alertCntlr;
   }
 
   async addList() {
@@ -41,7 +37,7 @@ export class Tab1Page {
         },
         {
           text: 'Crear',
-          handler: (data) => {
+          handler: (data: any) => {
             if (data.titulo.length === 0) {
               return;
             } else {
@@ -56,9 +52,4 @@ export class Tab1Page {
     alert.present();
   }
 
-  watchList( id: string ) {
-    /* Ambas funcionan */
-    // this.router.navigate( [ '/tabs/tab1/add', id ] );
-    this.router.navigateByUrl(`/tabs/tab1/add/${ id }`);
-  }
 }

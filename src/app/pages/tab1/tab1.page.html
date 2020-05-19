@@ -7,12 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <app-lists></app-lists>
-    <ion-list>
-        <ion-item (click)="watchList( list.id )" *ngFor="let list of lists" detail>
-            <ion-label>{{ list.title }}</ion-label>
-        </ion-item>
-    </ion-list>
+    <app-lists [finished]="false"></app-lists>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="tertiary" (click)="addList()">
             <ion-icon name="add"></ion-icon>

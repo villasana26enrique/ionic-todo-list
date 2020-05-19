@@ -1,3 +1,5 @@
-<p>
-    lists works!
-</p>
+<ion-list>
+    <ion-item (click)="watchList( list.id )" *ngFor="let list of lists" detail>
+        <ion-label>{{ list.title }}</ion-label>
+    </ion-item>
+</ion-list>
