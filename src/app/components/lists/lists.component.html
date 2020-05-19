@@ -2,6 +2,7 @@
     <ion-item-sliding *ngFor="let list of wishesService.lists">
         <ion-item (click)="watchList( list.id )" detail>
             <ion-label>{{ list.title }}</ion-label>
+            <ion-badge slot="end" color="tertiary">{{ list.items.length }} items</ion-badge>
         </ion-item>
         <ion-item-options side="end">
             <ion-item-option (click)="deleteList( list )" color="danger" expandable>
