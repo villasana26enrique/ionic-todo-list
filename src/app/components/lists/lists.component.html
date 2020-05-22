@@ -1,5 +1,5 @@
 <ion-list>
-    <ion-item-sliding *ngFor="let list of wishesService.lists">
+    <ion-item-sliding *ngFor="let list of wishesService.lists | filtroCompletados:finished">
         <ion-item (click)="watchList( list.id )" detail>
             <ion-label>{{ list.title }}</ion-label>
             <ion-badge slot="end" color="tertiary">{{ list.items.length }} items</ion-badge>
