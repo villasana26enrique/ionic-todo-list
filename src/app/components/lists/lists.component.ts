@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { WishesService } from '../../services/wishes.service';
 import { List } from '../../models/list.model';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonItemSliding } from '@ionic/angular';
 
 @Component({
   selector: 'app-lists',
@@ -38,6 +38,40 @@ export class ListsComponent {
   deleteList(list: List) {
     this.wishesService.deleteList( list );
     this.showMessage();
+  }
+
+  async editList(list: List, slidingItem: IonItemSliding) {
+    const alert = await this.alertController.create({
+      header: 'Modificar Nombre',
+      inputs: [{
+        name: 'titulo',
+        type: 'text',
+        value: list.title,
+        placeholder: 'Nombre de la lista'
+      }],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancelar');
+          }
+        },
+        {
+          text: 'Modificar',
+          handler: (data: any) => {
+            if (data.titulo.length === 0) {
+              return;
+            } else {
+              const listId = this.wishesService.editList(list.id, data.titulo);
+              slidingItem.close();
+            }
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   async showMessage() {

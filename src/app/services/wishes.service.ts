@@ -25,6 +25,13 @@ export class WishesService {
     this.saveStorage();
   }
 
+  editList ( id: string | number, title: string ) {
+    id = Number(id);
+    let list = this.lists.find( listData => listData.id === id );
+    list.title = title;
+    this.saveStorage();
+  }
+
   getList(id: string | number) {
     id = Number(id);
     return this.lists.find( listData => listData.id === id );
